@@ -21,7 +21,8 @@ public class EncryptCipher {
     }
 
     public void setC(char c) {
-        this.c = c;
+        //convert to uppercase
+        this.c = Character.toUpperCase(c);
     }
 
     public int getKey() {
@@ -36,6 +37,18 @@ public class EncryptCipher {
     public char encrypt() {
         int index = Arrays.asList(alphabet).indexOf(c);
         int newIndex = (index + key) % 26;
+        //check for spaces and special characters
+        if (c == ' ') {
+            return ' ';
+        }
+        //check for numbers
+        if (c >= '0' && c <= '9') {
+            return c;
+        }
+        //if special characters return character
+        if (c == '.' || c == ',' || c == '!' || c == '?' || c == ';' || c == ':' || c == '\'' || c == '\"' || c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}' || c == '<' || c == '>' || c == '&' || c == '#' || c == '$' || c == '%' || c == '^' || c == '*' || c == '+' || c == '-' || c == '/' || c == '\\' || c == '|' || c == '=' || c == '_' || c == '~' || c == '`' || c == '@' || c == '.' || c == ',' || c == '!' || c == '?' || c == ';' || c == ':' || c == '\'' || c == '\"' || c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}' || c == '<' || c == '>' || c == '&' || c == '#' || c == '$' || c == '%' || c == '^' || c == '*' || c == '+' || c == '-' || c == '/' || c == '\\' || c == '|' || c == '=' || c == '_' || c == '~' || c == '`') {
+            return c;
+        }
         return alphabet[newIndex];
     }
 }

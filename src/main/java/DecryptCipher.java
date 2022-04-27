@@ -23,7 +23,8 @@ public class DecryptCipher {
     }
 
     public void setC(char c) {
-        this.c = c;
+        //convert to uppercase
+        this.c = Character.toUpperCase(c);
     }
 
     public int getKey() {
@@ -39,6 +40,23 @@ public class DecryptCipher {
     public char decrypt() {
         int index = Arrays.asList(alphabet).indexOf(c);
         int newIndex = (index - key) % 26;
+        //check if new index is negative
+        if (newIndex < 0) {
+            newIndex = 26 + newIndex;
+        }
+        //check if charAt is a space
+        if (c == ' ') {
+            //return space
+            return ' ';
+        }
+        //check for numbers
+        if (c >= '0' && c <= '9') {
+            return c;
+        }
+        //if special characters return character
+        if (c == '.' || c == ',' || c == '!' || c == '?' || c == ';' || c == ':' || c == '\'' || c == '\"' || c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}' || c == '-' || c == '_' || c == '+' || c == '=' || c == '*' || c == '/' || c == '&' || c == '^' || c == '%' || c == '$' || c == '#' || c == '@' || c == '~' || c == '`' || c == '<' || c == '>' || c == '|' || c == '\\' || c == '\t' || c == '\n' || c == '\r') {
+            return c;
+        }
         return alphabet[newIndex];
     }
 
